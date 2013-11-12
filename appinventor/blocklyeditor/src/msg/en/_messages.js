@@ -721,6 +721,9 @@ Blockly.Msg.en.switch_language_to_english = {
 
     Blockly.Msg.LANG_LISTS_REPLACE_ITEM_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#replace';
     Blockly.Msg.LANG_LISTS_REPLACE_ITEM_TITLE_REPLACE = 'replace list item';
+    
+    Blockly.Msg.LANG_LISTS_REPLACE_ITEM_TITLE_REPLACE_DEST = 'change existing list by'
+    Blockly.Msg.LANG_LISTS_REPLACE_ITEM_TITLE_REPLACE_NONDEST = 'make new list by'
     Blockly.Msg.LANG_LISTS_REPLACE_ITEM_INPUT_LIST = 'list';
     Blockly.Msg.LANG_LISTS_REPLACE_ITEM_INPUT_INDEX = 'index';
     Blockly.Msg.LANG_LISTS_REPLACE_ITEM_INPUT_REPLACEMENT = 'replacement';
@@ -830,6 +833,96 @@ Blockly.Msg.en.switch_language_to_english = {
     Blockly.Msg.LANG_LISTS_LOOKUP_IN_PAIRS_INPUT = 'look up in pairs  key %1 pairs %2 notFound %3';
     Blockly.Msg.LANG_LISTS_LOOKUP_IN_PAIRS_TOOLTIP = 'Returns the value associated with the key in the list of pairs';
 
+    Blockly.Msg.LANG_LISTS_MAP_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#map';
+    Blockly.Msg.LANG_LISTS_MAP_NONDEST_TITLE_MAP = 'make new list from';
+    Blockly.Msg.LANG_LISTS_MAP_DEST_TITLE_MAP = 'change existing list';
+    Blockly.Msg.LANG_LISTS_MAP_INPUT_ITEM = 'mapping each';
+    Blockly.Msg.LANG_LISTS_MAP_INPUT_VAR = 'item';
+    Blockly.Msg.LANG_LISTS_MAP_INPUT_TO = 'to';
+    Blockly.Msg.LANG_LISTS_MAP_INPUT_COLLAPSED_TEXT = 'map list';
+    Blockly.Msg.LANG_LISTS_MAP_TOOLTIP = 'Maps each item in the list to a new item.'
+        + ' Use the given variable name to refer to the current list item.';
+
+    Blockly.Msg.LANG_LISTS_FILTER_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#filter';
+    Blockly.Msg.LANG_LISTS_FILTER_NONDEST_TITLE_FILTER = 'make new filtered list from ';
+    Blockly.Msg.LANG_LISTS_FILTER_DEST_TITLE_FILTER = 'filter existing list ';
+    Blockly.Msg.LANG_LISTS_FILTER_INPUT_ITEM = 'keeping each ';
+    Blockly.Msg.LANG_LISTS_FILTER_INPUT_VAR = 'item';
+    Blockly.Msg.LANG_LISTS_FILTER_INPUT_PASSING = 'passing ';
+    Blockly.Msg.LANG_LISTS_FILTER_INPUT_TEST = 'test';
+    Blockly.Msg.LANG_LISTS_FILTER_INPUT_COLLAPSED_TEXT = 'filter list';
+    Blockly.Msg.LANG_LISTS_FILTER_TOOLTIP = 'Keeps each item in the list satisfying the block in the \'test\' section.'
+        + ' Use the given variable name to refer to the current list item.';
+
+    Blockly.Msg.LANG_LISTS_REDUCE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#reduce';
+    Blockly.Msg.LANG_LISTS_REDUCE_TITLE_REDUCE = 'reduce';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_INLIST = 'list';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_INITIAL_ANSWER = 'starting with initialAnswer';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_COMBINE = 'by combining';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_VAR = 'item ';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_AND = 'and';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_ANSWER = 'answerSoFar';
+    Blockly.Msg.LANG_LISTS_REDUCE_INPUT_COLLAPSED_TEXT = 'reduce list';
+    Blockly.Msg.LANG_LISTS_REDUCE_TOOLTIP = 'Reduces the list to a single value by combining the list elements'
+        +	'using the block in the body section. If the list is empty, initialAnswer is returned. Otherwise, '
+        + 'the function is first applied to initialAnswer and the first list item, and then on the accumulating answer'
+        + 'and the next list item. This continues until the end of the list.';
+
+    Blockly.Msg.LANG_LISTS_REVERSE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#reverse';
+    Blockly.Msg.LANG_LISTS_REVERSE_NONDEST_TITLE_REVERSE = 'make new reversed list from';
+    Blockly.Msg.LANG_LISTS_REVERSE_DEST_TITLE_REVERSE = 'reverse existing list';
+    Blockly.Msg.LANG_LISTS_REVERSE_TOOLTIP = 'Reverses list.';
+    Blockly.Msg.LANG_LISTS_REVERSE_TYPEBLOCK = 'reverse list'
+
+    Blockly.Msg.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sort';
+    Blockly.Msg.LANG_LISTS_SORT_NONDEST_TITLE_SORT = 'make new sorted list from';
+    Blockly.Msg.LANG_LISTS_SORT_DEST_TITLE_SORT = 'sort existing list ';
+    Blockly.Msg.LANG_LISTS_SORT_TOOLTIP = 'Sorts list in ascending order.';
+    Blockly.Msg.LANG_LISTS_SORT_TYPEBLOCK = 'sort list'
+
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortcomparator';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_NONDEST_TITLE_SORT = 'make new sorted list from';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_DEST_TITLE_SORT = 'sort existing list';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'by comparing every';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR1 = 'item1';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_AND = 'and';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR2 = 'item2';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_TEXT = 'sort list using comparator';
+    Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_TOOLTIP = 'Sorts list using a comparison function that takes in two  '
+        + 'list items. The comparison function returns true or false and determines the ordering of list items.';
+
+    Blockly.Msg.LANG_LISTS_SORT_KEY_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortkey';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_NONDEST_TITLE_SORT = 'make new sorted list from';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_DEST_TITLE_SORT = 'sort existing list';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using key called on each ';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_INPUT_VAR = 'item';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_TEXT = 'sort list using key';
+    Blockly.Msg.LANG_LISTS_SORT_KEY_TOOLTIP = 'Sorts list using a key function that is applied to each list item'
+        + ' prior to sorting. The value returned by the key function is used for sorting.';
+    
+    Blockly.Msg.LANG_LISTS_MIN_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#min';
+    Blockly.Msg.LANG_LISTS_MIN_INPUT_MIN = 'minimum of list';
+    Blockly.Msg.LANG_LISTS_MIN_TOOLTIP = 'Returns minimum value of the list';
+    	
+    Blockly.Msg.LANG_LISTS_MAX_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#max';
+    Blockly.Msg.LANG_LISTS_MAX_INPUT_MAX = 'maximum of list';
+    Blockly.Msg.LANG_LISTS_MAX_TOOLTIP = 'Returns maximum value of the list';
+    
+    Blockly.Msg.LANG_LISTS_BUT_FIRST_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#butfirst';
+    Blockly.Msg.LANG_LISTS_BUT_FIRST_INPUT_BUT_FIRST = 'butFirst of list';
+    Blockly.Msg.LANG_LISTS_BUT_FIRST_TOOLTIP = 'Returns everything except the first value of the list';	
+    
+    Blockly.Msg.LANG_LISTS_BUT_LAST_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#butlast';
+    Blockly.Msg.LANG_LISTS_BUT_LAST_INPUT_BUT_LAST = 'butLast of list';
+    Blockly.Msg.LANG_LISTS_BUT_LAST_TOOLTIP = 'Returns everything except the last value of the list';
+    
+    Blockly.Msg.LANG_LISTS_SPLICE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#splice';
+    Blockly.Msg.LANG_LISTS_SPLICE_INPUT = 'splice list %1 index1 %2 index2 %3';
+    Blockly.Msg.LANG_LISTS_SPLICE_TITLE_SPLICE = 'splice list';
+    Blockly.Msg.LANG_LISTS_SPLICE_TOOLTIP = 'Returns list values from index1 up to but not including index2';
+    
+    
+    
     /*Blockly.Msg.LANG_LISTS_INDEX_OF_HELPURL = 'http://publib.boulder.ibm.com/infocenter/lnxpcomp/v8v101/index.jsp?topic=%2Fcom.ibm.xlcpp8l.doc%2Flanguage%2Fref%2Farsubex.htm';
      Blockly.Msg.LANG_LISTS_INDEX_OF_TITLE_FIND = 'find';
      Blockly.Msg.LANG_LISTS_INDEX_OF_INPUT_OCCURRENCE = 'occurrence of item';
