@@ -193,6 +193,22 @@ Blockly.FieldLexicalVariable.prototype.getNamesInScope = function () {
                      && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
               var loopName = parent.getTitleValue('VAR');
               rememberName(loopName, loopNames, Blockly.loopParameterPrefix); 
+          } else if ( (parent.type === "lists_mapOverEach")
+                  && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
+           var loopName = parent.getTitleValue('VAR');
+           rememberName(loopName, loopNames, Blockly.loopParameterPrefix); 
+          } else if ( (parent.type === "lists_filterOverEach")
+                  && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
+           var loopName = parent.getTitleValue('VAR');
+           rememberName(loopName, loopNames, Blockly.loopParameterPrefix);
+          /*} else if ( (parent.type === "lists_sortOverEach")
+                  && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
+           var loopName = parent.getTitleValue('VAR');
+          } else if ( (parent.type === "lists_reduceOverEach")
+                  && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
+           var loopName = parent.getTitleValue('VAR');
+           rememberName(loopName, loopNames, Blockly.loopParameterPrefix);
+           rememberName(loopName, loopNames, Blockly.loopParameterPrefix);*/
           } else if ( (parent.type === "controls_forRange")
                      && (parent.getInputTargetBlock('DO') == child)) {// Only DO is in scope, not other inputs!
               var rangeName = parent.getTitleValue('VAR');
