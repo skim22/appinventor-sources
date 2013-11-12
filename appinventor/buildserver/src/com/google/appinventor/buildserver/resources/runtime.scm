@@ -762,7 +762,6 @@
     ((_ lambda-arg-name body-form list)
      (yail-for-each (lambda (lambda-arg-name) body-form) list))))
 
-
 (define-syntax forrange
   (syntax-rules ()
     ((_ lambda-arg-name body-form start end step)
@@ -778,6 +777,31 @@
          (loop))
        *the-null-value*)))))
 
+(define-syntax mapovereach
+  (syntax-rules ()
+    ((_ lambda-arg-name body-form list)
+     (yail-map (lambda (lambda-arg-name) body-form) list))))
+
+(define-syntax filterovereach
+  (syntax-rules ()
+    ((_ lambda-arg-name body-form list)
+     (yail-filter (lambda (lambda-arg-name) body-form) list))))
+          
+(define-syntax reduceovereach
+  (syntax-rules ()
+    ((_ initialAnswer lambda-arg1-name lambda-arg2-name body-form list)
+     (yail-reduce initialAnswer (lambda (lambda-arg1-name lambda-arg2-name) body-form) list)))) 
+
+(define-syntax sortcomparator
+  (syntax-rules ()
+    ((_ lambda-arg1-name lambda-arg2-name body-form list)
+     (yail-list-sort-comparator (lambda (lambda-arg1-name lambda-arg2-name) body-form) list))))
+
+(define-syntax sortkey
+  (syntax-rules ()
+    ((_ lambda-arg-name body-form list)
+     (yail-list-sort-key (lambda (lambda-arg-name) body-form) list))))
+     
 ;;; RUNTIME library
 
 ;; TODO(markf): explicit 'provide' doesn't seem to work for us, so we put the runtime in a known
@@ -802,6 +826,8 @@
 
 (define-alias JavaCollection <java.util.Collection>)
 (define-alias JavaIterator <java.util.Iterator>)
+
+(require 'list-lib)
 
 ;;; This is what CodeBlocks sends to Yail to represent the value of an uninitialized variable
 ;;; Perhaps we should arrange things so that codeblocks never sends this.
@@ -1845,7 +1871,6 @@ list, use the make-yail-list constructor with no arguments.
   (let ((result (member object (yail-list-contents yail-list) yail-equal?)))
     (if result #t #f)))
 
-
 ;; Returns an element chosen at random from the list
 (define (yail-list-pick-random yail-list)
   (if (yail-list-empty? yail-list)
@@ -1854,7 +1879,6 @@ list, use the make-yail-list constructor with no arguments.
        "Invalid list operation"))
   (yail-list-get-item yail-list
               (random-integer 1  (yail-list-length yail-list))))
-
 
 ;; Implements Blocks foreach, which takes a Yail-list as argument
 ;; This is called by Yail foreach, defined in macros.scm
@@ -1867,10 +1891,218 @@ list, use the make-yail-list constructor with no arguments.
                  "The second argument to foreach is not a list.  The second argument is: ~A"
                  (get-display-representation yail-list))
          "Bad list argument to foreach")
-        (begin
-          (for-each proc (yail-list-contents verified-list))
+       (begin
+         (for-each proc (yail-list-contents verified-list))
           *the-null-value*))))
+          
+(define (yail-map proc yail-list)
+  (let ((verified-list (coerce-to-yail-list yail-list)))
+    (if (eq? verified-list *non-coercible-value*)
+        (signal-runtime-error
+         (format #f
+                 "The second argument to map is not a list.  The second argument is: ~A"
+                 (get-display-representation yail-list))
+         "Bad list argument to map")
+         (kawa-list->yail-list (map proc (yail-list-contents verified-list))))))
 
+(define (yail-filter proc yail-list)
+  (let ((verified-list (coerce-to-yail-list yail-list)))
+    (if (eq? verified-list *non-coercible-value*)
+        (signal-runtime-error
+         (format #f
+                 "The second argument to filter is not a list.  The second argument is: ~A"
+                 (get-display-representation yail-list))
+         "Bad list argument to filter")
+        (kawa-list->yail-list (filter proc (yail-list-contents verified-list))))))
+         
+(define (yail-reduce ans binop yail-list)
+  (define (reduce accum func lst)
+      (cond ((null? lst) accum)
+            (else (reduce (func accum (car lst)) func (cdr lst))))) 
+  (let ((verified-list (coerce-to-yail-list yail-list)))
+    (if (eq? verified-list *non-coercible-value*)
+        (signal-runtime-error
+         (format #f
+                 "The second argument to reduce is not a list.  The second argument is: ~A"
+                 (get-display-representation yail-list))
+         "Bad list argument to reduce")
+        (kawa-list->yail-list (reduce ans binop (yail-list-contents verified-list)))))) 
+        
+(define (yail-list-reverse yl)
+ 	(cond ((yail-list-empty? yl) (make YailList))
+          ((not (pair? yl)) yl)
+          (else (reverse (yail-list-contents yl)))))
+
+;;Implements a generic sorting procedure that works on any list of types.
+         
+(define typeordering '(boolean number text list component))
+
+(define (typeof val)
+	(cond ((boolean? val) 'boolean)
+		  ((number? val) 'number)
+		  ((string? val) 'text)
+		  ((yail-list? val) 'list)
+		  ((instance? val com.google.appinventor.components.runtime.Component) 'component)
+		  (else (signal-runtime-error 
+		  		  (format #f
+                          "typeof called with unexpected value: ~A"
+                          (get-display-representation val))
+         		   "Bad arguement to typeof"))))
+
+(define (indexof element list)
+	(list-index (lambda (x) (eq? x element)) list))
+		  
+(define (type-lt? type1 type2)
+	(< (indexof type1 typeordering) 
+	   (indexof type2 typeordering)))	
+
+(define (is-lt? val1 val2)
+    (let ((type1 (typeof val1)) 
+    	  (type2 (typeof val2)))
+     (or (type-lt? type1 type2) 
+      	 (and (eq? type1 type2) 
+      	       (cond ((eq? type1 'boolean) (boolean-lt? val1 val2))
+      	             ((eq? type1 'number) (< val1 val2))
+      	             ((eq? type1 'text) (string<? val1 val2))
+      	             ((eq? type1 'list) (list-lt? val1 val2))
+      	             ((eq? type1 'component) (component-lt? val1 val2))
+      	             (else (signal-runtime-error 
+		  		            (format #f
+		  		                    "(islt? ~A ~A)"
+                                    (get-display-representation val1) 
+                                    (get-display-representation val2))
+         		            "Shouldn't happen")))))))
+ 
+(define (is-eq? val1 val2)
+    (let ((type1 (typeof val1)) 
+    	  (type2 (typeof val2)))
+      (and (eq? type1 type2) 
+      	   (cond ((eq? type1 'boolean) (boolean-eq? val1 val2))
+      	         ((eq? type1 'number) (= val1 val2))
+      	         ((eq? type1 'text) (string=? val1 val2))
+      	         ((eq? type1 'list) (list-eq? val1 val2))
+      	         ((eq? type1 'component) (component-eq? val1 val2))
+      	         (else (signal-runtime-error 
+		  		            (format #f
+		  		                    "(islt? ~A ~A)"
+                                    (get-display-representation val1) 
+                                    (get-display-representation val2))
+         		            "Shouldn't happen")))))) 
+                     
+(define (is-leq? val1 val2)
+    (let ((type1 (typeof val1)) 
+    	  (type2 (typeof val2)))
+      (or (type-lt? type1 type2) 
+      	  (and (eq? type1 type2) 
+      	       (cond ((eq? type1 'boolean) (boolean-leq? val1 val2))
+      	             ((eq? type1 'number) (<= val1 val2))
+      	             ((eq? type1 'text) (string<=? val1 val2))
+      	             ((eq? type1 'list) (list-leq? val1 val2))
+      	             ((eq? type1 'component) (component-leq? val1 val2))
+      	             (else (signal-runtime-error 
+		  		            (format #f
+		  		                    "(isleq? ~A ~A)"
+                                    (get-display-representation val1) 
+                                    (get-display-representation val2))
+         		            "Shouldn't happen")))))))
+
+;;false is less than true
+(define (boolean-lt? val1 val2)
+	(and (not val1) val2))
+
+(define (boolean-eq? val1 val2)
+	(or (and val1 val2)
+		(and (not val1) (not val2)))) 
+    
+(define (boolean-leq? val1 val2)
+	(not (and val1 (not val2))))
+
+(define (list-lt? y1 y2)
+	(define (helper-list-lt? lst1 lst2)
+		(cond ((and (null? lst1) (null? lst2)) #t)
+        	  ((null? lst1) #t)
+              ((null? lst2) #f)
+              ((is-lt? (car lst1) (car lst2)) (helper-list-lt? (cdr lst1) (cdr lst2)))
+              (else #f)))
+	(helper-list-lt? (yail-list-contents y1) (yail-list-contents y2)))
+
+(define (list-eq? y1 y2)
+	(define (helper-list-eq? lst1 lst2)
+    	(cond ((and (null? lst1) (null? lst2)) #t)
+              ((is-eq? (car lst1) (car lst2)) (helper-list-eq? (cdr lst1) (cdr lst2)))
+              (else #f)))
+	(helper-list-eq? (yail-list-contents y1) (yail-list-contents y2)))
+
+(define (list-leq? y1 y2)
+  	(define (helper-list-leq? lst1 lst2)
+    	(cond ((and (null? lst1) (null? lst2)) #t)
+              ((null? lst1) #t)
+              ((null? lst2) #f)
+              ((is-leq? (car lst1) (car lst2)) (helper-list-leq? (cdr lst1) (cdr lst2)))
+              (else #f)))
+	(helper-list-leq? (yail-list-contents y1) (yail-list-contents y2)))
+
+;;Component are first compared using their class names. If they are instances of the same class,
+;;then they are compared using their hashcodes.
+(define (component-lt? comp1 comp2)
+	(or (string<? (*:getSimpleName (*:getClass comp1))
+                  (*:getSimpleName (*:getClass comp2)))
+        (and (string=? (*:getSimpleName (*:getClass comp1))
+                       (*:getSimpleName (*:getClass comp2)))
+             (< (*:hashCode comp1)
+                (*:hashCode comp2)))))
+
+(define (component-eq? comp1 comp2)
+	(and (string=? (*:getSimpleName (*:getClass comp1))
+                   (*:getSimpleName (*:getClass comp2)))
+         (= (*:hashCode comp1)
+            (*:hashCode comp2))))
+
+(define (component-leq? comp1 comp2)
+	(or (string<? (*:getSimpleName (*:getClass comp1))
+                  (*:getSimpleName (*:getClass comp2)))
+        (and (string=? (*:getSimpleName (*:getClass comp1))
+                       (*:getSimpleName (*:getClass comp2)))
+             (<= (*:hashCode comp1)
+                 (*:hashCode comp2)))))
+ 
+(define (merge lessthan? lst1 lst2)
+	(cond ((null? lst1) lst2)
+		  ((null? lst2) lst1)
+		  ((lessthan? (car lst1) (car lst2)) (cons (car lst1) (merge lessthan? (cdr lst1) lst2)))
+		  (else (cons (car lst2) (merge lessthan? lst1 (cdr lst2)))))) 
+
+(define (mergesort lessthan? lst)
+	(cond ((null? lst) lst)
+		  ((null? (cdr lst)) lst)
+		  (else (merge lessthan? (mergesort lessthan? (take lst (quotient (length lst) 2)))
+			  				     (mergesort lessthan? (drop lst (quotient (length lst) 2))))))) 
+ 
+(define (yail-list-sort y1)
+	(cond ((yail-list-empty? y1) (make YailList))
+          ((not (pair? y1)) y1)
+          (else (mergesort is-leq? (yail-list-contents y1))))) 
+			   	        
+(define (yail-list-sort-comparator lessthan? y1)                                           
+	(cond ((yail-list-empty? y1) (make YailList))
+          ((not (pair? y1)) y1)
+          (else (mergesort lessthan? (yail-list-contents y1))))) 
+        
+(define (yail-list-sort-key key y1) 
+	(define (merge-key lessthan? key lst1 lst2)
+		(cond ((null? lst1) lst2)
+			  ((null? lst2) lst1)
+			  ((lessthan? (key (car lst1)) (key (car lst2))) (cons (car lst1) (merge-key lessthan? key (cdr lst1) lst2)))
+			  (else (cons (car lst2) (merge-key lessthan? key lst1 (cdr lst2)))))) 
+	(define (mergesort-key lessthan? key lst)
+		(cond ((null? lst) lst)
+			  ((null? (cdr lst)) lst)
+			  (else (merge-key lessthan? key (mergesort-key lessthan? key (take lst (quotient (length lst) 2)))
+			  				             (mergesort-key lessthan? key (drop lst (quotient (length lst) 2))))))) 
+	(cond ((yail-list-empty? y1) (make YailList))
+          ((not (pair? y1)) y1)
+          (else (mergesort-key is-leq? key (yail-list-contents y1))))) 
+                                          
 ;; yail-for-range needs to check that its args are numeric
 ;; because the blocks editor can't guarantee this
 (define (yail-for-range proc start end step)
