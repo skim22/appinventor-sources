@@ -732,27 +732,58 @@ Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_INPUT_NOT_FOUND = 'notFound';
 Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_TOOLTIP = 'Returns the value associated with the key in the list of pairs';
 
 Blockly.LANG_LISTS_MAPOVEREACH_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
-Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEM = 'map over each';
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEMND = 'map over existing ';
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEMD = 'make new  ';
+
 Blockly.LANG_LISTS_MAPOVEREACH_INPUT_VAR = 'item';
-Blockly.LANG_LISTS_MAPOVEREACH_INPUT_INLIST = 'in list';
-Blockly.LANG_LISTS_MAPOVEREACH_INPUT_EXPRESSION = 'with expression';
-Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO = 'with ';
+
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_INLIST = 'list';
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_EXPRESSION = 'change each ';
+
+Blockly.LANG_LISTS_MAPOVEREACHND_INPUT_EXPRESSION = 'from mapping each ';
+
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_TO = 'to ';
+Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO = 'new item';
 Blockly.LANG_LISTS_MAPOVEREACH_INPUT_COLLAPSED_TEXT = 'map over item in list';
 Blockly.LANG_LISTS_MAPOVEREACH_INPUT_COLLAPSED_PREFIX = 'map ';
 Blockly.LANG_LISTS_MAPOVEREACH_INPUT_COLLAPSED_SUFFIX = ' in list';
 Blockly.LANG_LISTS_MAPOVEREACH_TOOLTIP = 'Runs the blocks in the \'expression\'  section for each item in '
   + 'the list.  Use the given variable name to refer to the current list item.';
 
+Blockly.LANG_LISTS_MAPOVEREACHND_INPUT_INLIST = 'list';
+
 Blockly.LANG_LISTS_FILTEROVEREACH_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
-Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM = 'filter over each';
-Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR = 'item';
-Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_INLIST = 'in list';
-Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_PREDICATE = 'with predicate';
-Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO = 'with ';
+//Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM = 'filter over each';
+Blockly.LANG_LISTS_FILTEROVEREACHD_INPUT_ITEM = 'filter existing ';
+Blockly.LANG_LISTS_FILTEROVEREACHND_INPUT_ITEM = 'make new filtered ';
+
+Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR = 'item ';
+ 
+Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_INLIST = 'list';
+Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_PREDICATE = 'keep each ';
+Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_SATISFY = 'passing ';
+Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO = 'test ';
 Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_TEXT = 'filter over item in list';
 Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_PREFIX = 'filter ';
 Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_SUFFIX = ' in list';
 Blockly.LANG_LISTS_FILTEROVEREACH_TOOLTIP = 'Runs the blocks in the \'expression\'  section for each item in '
+  + 'the list.  Use the given variable name to refer to the current list item.';
+
+//Blockly.LANG_LISTS_FILTEROVEREACHND_INPUT_INLIST = 'make new filtered list';
+
+Blockly.LANG_LISTS_FILTEROVEREACHND_INPUT_PREDICATE = 'from picking each ';
+
+Blockly.LANG_LISTS_FILTERNOTDEST_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
+Blockly.LANG_LISTS_FILTERNOTDEST_FILTER = 'filter';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_INLIST = 'list';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_VAR = 'item';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_INLIST = 'in list';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_PREDICATE = 'with predicate';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_DO = 'with ';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_COLLAPSED_TEXT = 'filter over item in list';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_COLLAPSED_PREFIX = 'filter ';
+Blockly.LANG_LISTS_FILTERNOTDEST_INPUT_COLLAPSED_SUFFIX = ' in list';
+Blockly.LANG_LISTS_FILTERNOTDEST_TOOLTIP = 'Runs the blocks in the \'expression\'  section for each item in '
   + 'the list.  Use the given variable name to refer to the current list item.';
 
 /*Blockly.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
@@ -767,7 +798,10 @@ Blockly.LANG_LISTS_SORT_TOOLTIP = 'Runs the blocks in the \'expression\'  sectio
   + 'the list.  Use the given variable name to refer to the current list item.';*/
 
 Blockly.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#copy';
-Blockly.LANG_LISTS_SORT_TITLE_COPY = 'sort ';
+Blockly.LANG_LISTS_SORT_TITLE_COPY = 'sort existing ';
+
+Blockly.LANG_LISTS_SORTD_TITLE_COPY = 'make new sorted ';
+
 Blockly.LANG_LISTS_SORT_INPUT_LIST = 'list';
 Blockly.LANG_LISTS_SORT_TOOLTIP = 'Sort list in ascending order';
 
@@ -777,11 +811,14 @@ Blockly.LANG_LISTS_REVERSE_INPUT_LIST = 'list';
 Blockly.LANG_LISTS_REVERSE_TOOLTIP = 'Reverse list';
 
 Blockly.LANG_LISTS_SORTOVEREACH_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
-Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM = 'customized sort';
+Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM = 'sort existing ';
+
+Blockly.LANG_LISTS_SORTOVEREACHD_INPUT_ITEM = 'make new sorted ';
+
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_VAR = 'item';
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_INLIST = 'list';
 //Blockly.LANG_LISTS_SORTOVEREACH_INPUT_NULL = 'null';
-Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COMPARATOR = 'with comparator';
+Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COMPARATOR = 'using comparator';
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM1 = 'item1';
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_AND = ' ';
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM2 = 'item2';
@@ -791,6 +828,8 @@ Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX = 'sort ';
 Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX = ' in list';
 Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP = 'Runs the blocks in the \'expression\'  section for each item in '
   + 'the list.  Use the given variable name to refer to the current list item.';
+
+Blockly.LANG_LISTS_SORTOVEREACH_INPUT_KEY = 'using key';
 
 Blockly.LANG_LISTS_REDUCEOVEREACH_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/control#foreach';
 Blockly.LANG_LISTS_REDUCEOVEREACH_INPUT_ITEM = 'reduce';

@@ -26,7 +26,7 @@
 
 if (!Blockly.Language) Blockly.Language = {};
 
-Blockly.Language.lists_mapOverEach = {
+Blockly.Language.lists_mapDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_MAPOVEREACH_HELPURL,
@@ -40,18 +40,19 @@ Blockly.Language.lists_mapOverEach = {
 		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendValueInput('LIST')
 		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
-		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEM)
-		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_VAR,
-		                                                       true, // name is editable
-		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
-		                     'VAR')
+		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEMND)
 		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_INLIST)
 		        .setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendDummyInput('EXPRESSION')
 		    	.appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_EXPRESSION)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_VAR,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')
+		         .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_TO)            
 		    	.setAlign(Blockly.ALIGN_RIGHT);
-		    this.appendIndentedValueInput('DO');
-		        //.appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO);
+		    this.appendIndentedValueInput('DO')
+		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO);
 		    //this.setOutput(true, null);
 		    this.setPreviousStatement(true);
 		    this.setNextStatement(true);
@@ -91,7 +92,7 @@ Blockly.Language.lists_mapOverEach = {
 		  }
 		};
 
-/*Blockly.Language.lists_mapOverEach = {
+Blockly.Language.lists_mapNonDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_MAPOVEREACH_HELPURL,
@@ -105,21 +106,22 @@ Blockly.Language.lists_mapOverEach = {
 		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendValueInput('LIST')
 		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
-		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEM)
-		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_VAR,
-		                                                       true, // name is editable
-		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
-		                     'VAR')
+		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_ITEMD)
 		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_INLIST)
 		        .setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendDummyInput('EXPRESSION')
-		    	.appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_EXPRESSION)
+		    	.appendTitle(Blockly.LANG_LISTS_MAPOVEREACHND_INPUT_EXPRESSION)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_VAR,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')
+		         .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_TO)            
 		    	.setAlign(Blockly.ALIGN_RIGHT);
-		    this.appendIndentedValueInput('DO');
-		        //.appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO);
-		    //this.setOutput(true, null);
-		    this.setPreviousStatement(true);
-		    this.setNextStatement(true);
+		    this.appendIndentedValueInput('DO')
+		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_DO);
+		    this.setOutput(true, null);
+		    //this.setPreviousStatement(true);
+		    //this.setNextStatement(true);
 		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_MAPOVEREACH_TOOLTIP);
 		    this.appendCollapsedInput()
 		        .appendTitle(Blockly.LANG_LISTS_MAPOVEREACH_INPUT_COLLAPSED_PREFIX
@@ -154,9 +156,10 @@ Blockly.Language.lists_mapOverEach = {
 		            + ' '   + this.getTitleValue('VAR') + ' '
 		            + Blockly.LANG_LISTS_MAPOVEREACH_INPUT_COLLAPSED_SUFFIX);
 		  }
-		};*/
+		};
 
-Blockly.Language.lists_filterOverEach = {
+
+Blockly.Language.lists_filterDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_FILTEROVEREACH_HELPURL,
@@ -170,18 +173,24 @@ Blockly.Language.lists_filterOverEach = {
 		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendValueInput('LIST')
 		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
-		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM)
+		        /*.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM)
 		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR,
 		                                                       true, // name is editable
 		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
-		                     'VAR')
+		                     'VAR')*/
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACHD_INPUT_ITEM)
 		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_INLIST)
 		        .setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendDummyInput('PREDICATE')
 		    	.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_PREDICATE)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')
+		         .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_SATISFY)
 		    	.setAlign(Blockly.ALIGN_RIGHT);
-		    this.appendIndentedValueInput('DO');
-		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
+		    this.appendIndentedValueInput('DO')
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
 		    //this.setOutput(true, null);
 		    this.setPreviousStatement(true);
 		    this.setNextStatement(true);
@@ -221,7 +230,79 @@ Blockly.Language.lists_filterOverEach = {
 		  }
 		};
 
-Blockly.Language.lists_sortOverEach = {
+Blockly.Language.lists_filterNonDestructive = {
+		  // For each loop.
+		  category : Blockly.LANG_CATEGORY_LISTS,
+		  helpUrl : Blockly.LANG_LISTS_FILTEROVEREACH_HELPURL,
+		  init : function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    //this.setOutput(true, null);
+		    // [lyn, 10/07/13] Changed default name from "i" to "item"
+		    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
+		    // Old code:
+		    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
+		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendValueInput('LIST')
+		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
+		        /*.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM)
+		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')*/
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACHND_INPUT_ITEM)
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_INLIST)
+		        .setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendDummyInput('PREDICATE')
+		    	.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACHND_INPUT_PREDICATE)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_VAR,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')
+		         .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_SATISFY)
+		    	.setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendIndentedValueInput('DO')
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
+		    this.setOutput(true, null);
+		    //this.setPreviousStatement(true);
+		    //this.setNextStatement(true);
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_FILTEROVEREACH_TOOLTIP);
+		    this.appendCollapsedInput()
+		        .appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_PREFIX
+		                        + ' '   + this.getTitleValue('VAR') + ' '
+		                        + Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_SUFFIX,
+		                     'COLLAPSED_TEXT');
+		  },
+		  onchange: Blockly.WarningHandler.checkErrors,
+		  getVars: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  blocksInScope: function() {
+		    var doBlock = this.getInputTargetBlock('DO');
+		    if (doBlock) {
+		      return [doBlock];
+		    } else {
+		      return [];
+		    }
+		  },
+		  declaredNames: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  renameVar: function(oldName, newName) {
+		    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+		      this.setTitleValue(newName, 'VAR');
+		    }
+		  },
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_ITEM }],
+		  prepareCollapsedText: function(){
+		    this.getTitle_('COLLAPSED_TEXT')
+		        .setText(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_PREFIX
+		            + ' '   + this.getTitleValue('VAR') + ' '
+		            + Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_COLLAPSED_SUFFIX);
+		  }
+		};
+
+
+Blockly.Language.lists_sortComparatorNonDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
@@ -236,6 +317,80 @@ Blockly.Language.lists_sortOverEach = {
 		    this.appendValueInput('LIST')
 		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
 		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM)
+		        //.setAlign(Blockly.ALIGN_LEFT)
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_INLIST)
+		        .setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendDummyInput('COMPARATOR')
+		    	.appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COMPARATOR)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM1,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR')
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_AND)
+		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM2,
+		                                                       true, // name is editable
+		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+		                     'VAR2')  
+		    	.setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendIndentedValueInput('DO');
+		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
+		    //this.setOutput(true, null);
+		    this.setPreviousStatement(true);
+		    this.setNextStatement(true);
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP);
+		    this.appendCollapsedInput()
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		                        + ' '   + this.getTitleValue('VAR') + ' '
+		                        + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX,
+		                     'COLLAPSED_TEXT');
+		  },
+		  onchange: Blockly.WarningHandler.checkErrors,
+		  getVars: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  blocksInScope: function() {
+		    var doBlock = this.getInputTargetBlock('DO');
+		    if (doBlock) {
+		      return [doBlock];
+		    } else {
+		      return [];
+		    }
+		  },
+		  declaredNames: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  renameVar: function(oldName, newName) {
+		    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+		      this.setTitleValue(newName, 'VAR');
+		    }
+		  },
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM }],
+		  prepareCollapsedText: function(){
+		    this.getTitle_('COLLAPSED_TEXT')
+		        .setText(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		            + ' '   + this.getTitleValue('VAR') + ' '
+		            + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX);
+		  }
+		};
+
+
+
+Blockly.Language.lists_sortComparatorDestructive = {
+		  // For each loop.
+		  category : Blockly.LANG_CATEGORY_LISTS,
+		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
+		  init : function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    //this.setOutput(true, null);
+		    // [lyn, 10/07/13] Changed default name from "i" to "item"
+		    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
+		    // Old code:
+		    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
+		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendValueInput('LIST')
+		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACHD_INPUT_ITEM)
+		        //.setAlign(Blockly.ALIGN_LEFT)
 		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_INLIST)
 		        .setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendDummyInput('COMPARATOR')
@@ -291,14 +446,151 @@ Blockly.Language.lists_sortOverEach = {
 		  }
 		};
 
-Blockly.Language.lists_sort = {
+Blockly.Language.lists_sortKeyNonDestructive = {
+		  // For each loop.
+		  category : Blockly.LANG_CATEGORY_LISTS,
+		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
+		  init : function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    //this.setOutput(true, null);
+		    // [lyn, 10/07/13] Changed default name from "i" to "item"
+		    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
+		    // Old code:
+		    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
+		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendValueInput('LIST')
+		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM)
+		        //.setAlign(Blockly.ALIGN_LEFT)
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_INLIST)
+		        .setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendDummyInput('KEY')
+		    	.appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_KEY)
+		    	
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_VAR,
+                    true, // name is editable
+                    Blockly.FieldFlydown.DISPLAY_BELOW),
+		    			'VAR')
+		    	.setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendIndentedValueInput('DO');
+		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
+		    //this.setOutput(true, null);
+		    this.setPreviousStatement(true);
+		    this.setNextStatement(true);
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP);
+		    this.appendCollapsedInput()
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		                        + ' '   + this.getTitleValue('VAR') + ' '
+		                        + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX,
+		                     'COLLAPSED_TEXT');
+		  },
+		  onchange: Blockly.WarningHandler.checkErrors,
+		  getVars: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  blocksInScope: function() {
+		    var doBlock = this.getInputTargetBlock('DO');
+		    if (doBlock) {
+		      return [doBlock];
+		    } else {
+		      return [];
+		    }
+		  },
+		  declaredNames: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  renameVar: function(oldName, newName) {
+		    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+		      this.setTitleValue(newName, 'VAR');
+		    }
+		  },
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM }],
+		  prepareCollapsedText: function(){
+		    this.getTitle_('COLLAPSED_TEXT')
+		        .setText(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		            + ' '   + this.getTitleValue('VAR') + ' '
+		            + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX);
+		  }
+		};
+
+
+Blockly.Language.lists_sortKeyDestructive = {
+		  // For each loop.
+		  category : Blockly.LANG_CATEGORY_LISTS,
+		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
+		  init : function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    //this.setOutput(true, null);
+		    // [lyn, 10/07/13] Changed default name from "i" to "item"
+		    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
+		    // Old code:
+		    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
+		    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendValueInput('LIST')
+		        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACHD_INPUT_ITEM)
+		        //.setAlign(Blockly.ALIGN_LEFT)
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_INLIST)
+		        .setAlign(Blockly.ALIGN_RIGHT);
+		    this.appendDummyInput('KEY')
+		    	.appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_KEY)
+		    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_VAR,
+                    true, // name is editable
+                    Blockly.FieldFlydown.DISPLAY_BELOW),
+		    			'VAR')
+		    	.setAlign(Blockly.ALIGN_RIGHT);
+		    
+		    this.appendIndentedValueInput('DO');
+		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
+		    this.setOutput(true, null);
+		    //this.setPreviousStatement(true);
+		    //this.setNextStatement(true);
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP);
+		    this.appendCollapsedInput()
+		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		                        + ' '   + this.getTitleValue('VAR') + ' '
+		                        + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX,
+		                     'COLLAPSED_TEXT');
+		  },
+		  onchange: Blockly.WarningHandler.checkErrors,
+		  getVars: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  blocksInScope: function() {
+		    var doBlock = this.getInputTargetBlock('DO');
+		    if (doBlock) {
+		      return [doBlock];
+		    } else {
+		      return [];
+		    }
+		  },
+		  declaredNames: function() {
+		    return [this.getTitleValue('VAR')];
+		  },
+		  renameVar: function(oldName, newName) {
+		    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+		      this.setTitleValue(newName, 'VAR');
+		    }
+		  },
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORTOVEREACH_INPUT_ITEM }],
+		  prepareCollapsedText: function(){
+		    this.getTitle_('COLLAPSED_TEXT')
+		        .setText(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
+		            + ' '   + this.getTitleValue('VAR') + ' '
+		            + Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_SUFFIX);
+		  }
+		};
+
+
+
+Blockly.Language.lists_sortNonDestructive = {
 		  // Make a copy of list.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_SORT_HELPURL,
 		  init : function() {
 		    this.setColour(Blockly.LIST_CATEGORY_HUE);
 		    this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
-		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('sort ascending list').appendTitle('list');
+		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new sorted ').appendTitle('list');
 		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_TOOLTIP);
 		    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
 		  },
@@ -306,24 +598,25 @@ Blockly.Language.lists_sort = {
 		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_TITLE_SORT }]
 		};
 
-Blockly.Language.lists_reverse2 = {
+Blockly.Language.lists_sortDestructive = {
 		  // Make a copy of list.
 		  category : Blockly.LANG_CATEGORY_LISTS,
-		  helpUrl : Blockly.LANG_LISTS_REVERSE_HELPURL,
+		  helpUrl : Blockly.LANG_LISTS_SORT_HELPURL,
 		  init : function() {
 		    this.setColour(Blockly.LIST_CATEGORY_HUE);
 		    //this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
 		    this.setPreviousStatement(true);
 		    this.setNextStatement(true);
-		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('reverse list').appendTitle('list');
-		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
+		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('sort existing ').appendTitle('list');
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_TOOLTIP);
 		    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
 		  },
 		  onchange: Blockly.WarningHandler.checkErrors,
-		  typeblock: [{ translatedName: Blockly.LANG_LISTS_REVERSE_TITLE_SORT }]
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_TITLE_SORT }]
 		};
 
-Blockly.Language.lists_reverse = {
+
+Blockly.Language.lists_reverseNonDestructive = {
 		  // Make a copy of list.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_REVERSE_HELPURL,
@@ -332,13 +625,31 @@ Blockly.Language.lists_reverse = {
 		    this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
 		    //this.setPreviousStatement(true);
 		    //this.setNextStatement(true);
-		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('reverse list').appendTitle('list');
+		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new reversed ').appendTitle('list');
 		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
 		    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
 		  },
 		  onchange: Blockly.WarningHandler.checkErrors,
 		  typeblock: [{ translatedName: Blockly.LANG_LISTS_REVERSE_TITLE_SORT }]
 		};
+
+Blockly.Language.lists_reverseDestructive = {
+		  // Make a copy of list.
+		  category : Blockly.LANG_CATEGORY_LISTS,
+		  helpUrl : Blockly.LANG_LISTS_REVERSE_HELPURL,
+		  init : function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    //this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
+		    this.setPreviousStatement(true);
+		    this.setNextStatement(true);
+		    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('reverse existing ').appendTitle('list');
+		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
+		    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
+		  },
+		  onchange: Blockly.WarningHandler.checkErrors,
+		  typeblock: [{ translatedName: Blockly.LANG_LISTS_REVERSE_TITLE_SORT }]
+		};
+
 
 Blockly.Language.lists_reduceOverEach = {
 		  // For each loop.
@@ -370,7 +681,7 @@ Blockly.Language.lists_reduceOverEach = {
 		        .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_REDUCEOVEREACH_INPUT_ANSWER,
 		                                                       true, // name is editable
 		                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
-		                     'ANSWER')  
+		                     'VAR2') 
 		    	.setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendIndentedValueInput('DO');
 		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
