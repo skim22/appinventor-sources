@@ -302,7 +302,7 @@ Blockly.Language.lists_filterNonDestructive = {
 		};
 
 
-Blockly.Language.lists_sortComparatorNonDestructive = {
+Blockly.Language.lists_sortComparatorDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
@@ -375,7 +375,7 @@ Blockly.Language.lists_sortComparatorNonDestructive = {
 
 
 
-Blockly.Language.lists_sortComparatorDestructive = {
+Blockly.Language.lists_sortComparatorNonDestructive = {
 		  // For each loop.
 		  category : Blockly.LANG_CATEGORY_LISTS,
 		  helpUrl : Blockly.LANG_LISTS_SORTOVEREACH_HELPURL,
