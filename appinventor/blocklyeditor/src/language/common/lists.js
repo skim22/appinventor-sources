@@ -474,9 +474,9 @@ Blockly.Language.lists_sortKeyNonDestructive = {
 		    	.setAlign(Blockly.ALIGN_RIGHT);
 		    this.appendIndentedValueInput('DO');
 		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
-		    //this.setOutput(true, null);
-		    this.setPreviousStatement(true);
-		    this.setNextStatement(true);
+		    this.setOutput(true, null);
+		    //this.setPreviousStatement(true);
+		    //this.setNextStatement(true);
 		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP);
 		    this.appendCollapsedInput()
 		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
@@ -542,9 +542,9 @@ Blockly.Language.lists_sortKeyDestructive = {
 		    
 		    this.appendIndentedValueInput('DO');
 		        //.appendTitle(Blockly.LANG_LISTS_FILTEROVEREACH_INPUT_DO);
-		    this.setOutput(true, null);
-		    //this.setPreviousStatement(true);
-		    //this.setNextStatement(true);
+		    //this.setOutput(true, null);
+		    this.setPreviousStatement(true);
+		    this.setNextStatement(true);
 		    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORTOVEREACH_TOOLTIP);
 		    this.appendCollapsedInput()
 		        .appendTitle(Blockly.LANG_LISTS_SORTOVEREACH_INPUT_COLLAPSED_PREFIX
