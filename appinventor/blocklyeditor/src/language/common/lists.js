@@ -33,18 +33,12 @@ Blockly.Language.lists_map = {
   helpUrl : Blockly.LANG_LISTS_MAP_HELPURL,
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
-    //this.setOutput(true, null);
-    // [lyn, 10/07/13] Changed default name from "i" to "item"
-    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
-    // Old code:
-    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
-    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_MAP_TITLE_MAP)
         .appendTitle(Blockly.LANG_LISTS_MAP_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendDummyInput('EXPRESSION')
+    this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_MAP_INPUT_ITEM)
     	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAP_INPUT_VAR,
                                                        true, // name is editable
@@ -85,9 +79,7 @@ Blockly.Language.lists_map = {
   typeblock: [{ translatedName: Blockly.LANG_LISTS_MAP_TITLE_MAP }],
   prepareCollapsedText: function(){
     this.getTitle_('COLLAPSED_TEXT')
-        .setText(Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_PREFIX
-            + ' '   + this.getTitleValue('VAR') + ' '
-            + Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_SUFFIX);
+        .setText(Blockly.LANG_LISTS_MAP_TITLE_MAP);
   }
 };
 
@@ -97,18 +89,12 @@ Blockly.Language.lists_filter = {
   helpUrl : Blockly.LANG_LISTS_FILTER_HELPURL,
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
-    //this.setOutput(true, null);
-    // [lyn, 10/07/13] Changed default name from "i" to "item"
-    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
-    // Old code:
-    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
-    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_FILTER_TITLE_FILTER)
         .appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendDummyInput('PREDICATE')
+    this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_ITEM)
     	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_FILTER_INPUT_VAR,
                                                        true, // name is editable
@@ -149,9 +135,7 @@ Blockly.Language.lists_filter = {
   typeblock: [{ translatedName: Blockly.LANG_LISTS_FILTER_TITLE_FILTER }],
   prepareCollapsedText: function(){
     this.getTitle_('COLLAPSED_TEXT')
-        .setText(Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_PREFIX
-            + ' '   + this.getTitleValue('VAR') + ' '
-            + Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_SUFFIX);
+        .setText(Blockly.LANG_LISTS_FILTER_TITLE_FILTER);
   }
 };
 
@@ -161,12 +145,6 @@ Blockly.Language.lists_reduce = {
   helpUrl : Blockly.LANG_LISTS_REDUCE_HELPURL,
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
-    //this.setOutput(true, null);
-    // [lyn, 10/07/13] Changed default name from "i" to "item"
-    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
-    // Old code:
-    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
-    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE)
@@ -180,7 +158,7 @@ Blockly.Language.lists_reduce = {
     	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_REDUCE_INPUT_VAR,
                                                        true, // name is editable
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
-                     'VAR')
+                     'VAR1')
         .appendTitle(Blockly.LANG_LISTS_REDUCE_INPUT_AND)
         .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_REDUCE_INPUT_ANSWER,
                                                        true, // name is editable
@@ -198,7 +176,10 @@ Blockly.Language.lists_reduce = {
   },
   onchange: Blockly.WarningHandler.checkErrors,
   getVars: function() {
-    return [this.getTitleValue('VAR')];
+	var names = []
+	names.push(this.getTitleValue('VAR1'));
+	names.push(this.getTitleValue('VAR2'));
+    return names;
   },
   blocksInScope: function() {
     var doBlock = this.getInputTargetBlock('DO');
@@ -209,21 +190,37 @@ Blockly.Language.lists_reduce = {
     }
   },
   declaredNames: function() {
-    return [this.getTitleValue('VAR')];
+	return this.getVars();
   },
   renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
-      this.setTitleValue(newName, 'VAR');
+    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR1'))) {
+      this.setTitleValue(newName, 'VAR1');
+    }
+    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR2'))) {
+        this.setTitleValue(newName, 'VAR2');
     }
   },
   typeblock: [{ translatedName: Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE }],
   prepareCollapsedText: function(){
     this.getTitle_('COLLAPSED_TEXT')
-        .setText(Blockly.LANG_LISTS_REDUCE_INPUT_COLLAPSED_PREFIX
-            + ' '   + this.getTitleValue('VAR') + ' '
-		            + Blockly.LANG_LISTS_REDUCE_INPUT_COLLAPSED_SUFFIX);
+        .setText(Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE);
 		  }
-		};
+};
+
+Blockly.Language.lists_reverse = {
+  // Make a new reversed list.
+  category : Blockly.LANG_CATEGORY_LISTS,
+  helpUrl : Blockly.LANG_LISTS_REVERSE_HELPURL,
+  init : function() {
+    this.setColour(Blockly.LIST_CATEGORY_HUE);
+    this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
+    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new reversed ').appendTitle('list');
+    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
+    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
+  },
+  onchange: Blockly.WarningHandler.checkErrors,
+  typeblock: [{ translatedName: Blockly.LANG_LISTS_REVERSE_TITLE_REVERSE }]
+}; 
 
 Blockly.Language.lists_sort = {
   // Make a new sorted list.
@@ -232,13 +229,13 @@ Blockly.Language.lists_sort = {
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
     this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
-    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('sort ').appendTitle('list');
+    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new sorted ').appendTitle('list');
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_TOOLTIP);
     this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
-		  },
-		  onchange: Blockly.WarningHandler.checkErrors,
-		  typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_TITLE_SORT }]
-		};
+   },
+   onchange: Blockly.WarningHandler.checkErrors,
+   typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_TITLE_SORT }]
+};
 
 Blockly.Language.lists_sort_comparator = {
   // For each loop.
@@ -246,23 +243,17 @@ Blockly.Language.lists_sort_comparator = {
   helpUrl : Blockly.LANG_LISTS_SORT_COMPARATOR_HELPURL,
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
-    //this.setOutput(true, null);
-    // [lyn, 10/07/13] Changed default name from "i" to "item"
-    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
-    // Old code:
-    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
-    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT)
         .appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendDummyInput('COMPARATOR')
+    this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR)
-    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR,
+    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR1,
                                                        true, // name is editable
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
-                     'VAR')
+                     'VAR1')
         .appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_AND)
         .appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR2,
                                                        true, // name is editable
@@ -280,7 +271,10 @@ Blockly.Language.lists_sort_comparator = {
   },
   onchange: Blockly.WarningHandler.checkErrors,
   getVars: function() {
-    return [this.getTitleValue('VAR')];
+		var names = []
+		names.push(this.getTitleValue('VAR1'));
+		names.push(this.getTitleValue('VAR2'));
+	    return names;
   },
   blocksInScope: function() {
     var doBlock = this.getInputTargetBlock('DO');
@@ -291,21 +285,22 @@ Blockly.Language.lists_sort_comparator = {
     }
   },
   declaredNames: function() {
-    return [this.getTitleValue('VAR')];
+	 return this.getVars();
   },
   renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
-      this.setTitleValue(newName, 'VAR');
+    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR1'))) {
+      this.setTitleValue(newName, 'VAR1');
+    }
+    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR2'))) {
+        this.setTitleValue(newName, 'VAR2');
     }
   },
   typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT }],
   prepareCollapsedText: function(){
     this.getTitle_('COLLAPSED_TEXT')
-        .setText(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_PREFIX 
-            + ' '   + this.getTitleValue('VAR') + ' '
-		            + Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_SUFFIX);
-		  }
-		};
+        .setText(Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT);
+  }
+};
 
 Blockly.Language.lists_sort_key = {
   // For each loop.
@@ -313,18 +308,12 @@ Blockly.Language.lists_sort_key = {
   helpUrl : Blockly.LANG_LISTS_SORT_KEY_HELPURL,
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
-    //this.setOutput(true, null);
-    // [lyn, 10/07/13] Changed default name from "i" to "item"
-    // [lyn, 11/29/12] Changed variable to be text input box that does renaming right (i.e., avoids variable capture)
-    // Old code:
-    // this.appendValueInput('VAR').appendTitle('for range').appendTitle('variable').setAlign(Blockly.ALIGN_RIGHT);
-    // this.appendValueInput('START').setCheck(Number).appendTitle('start').setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT)
         .appendTitle(Blockly.LANG_LISTS_SORT_KEY_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendDummyInput('KEY')
+    this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY)    	
     	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_SORT_KEY_INPUT_VAR,
     													true, // name is editable
@@ -363,27 +352,9 @@ Blockly.Language.lists_sort_key = {
   typeblock: [{ translatedName: Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT }],
   prepareCollapsedText: function(){
     this.getTitle_('COLLAPSED_TEXT')
-        .setText(Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_PREFIX
-            + ' '   + this.getTitleValue('VAR') + ' '
-		            + Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_SUFFIX);
-		  }
-		};
-
-Blockly.Language.lists_reverse = {
-  // Make a new reversed list.
-  category : Blockly.LANG_CATEGORY_LISTS,
-  helpUrl : Blockly.LANG_LISTS_REVERSE_HELPURL,
-  init : function() {
-    this.setColour(Blockly.LIST_CATEGORY_HUE);
-    this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
-    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('reverse ').appendTitle('list');
-    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
-    this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
-  },
-  onchange: Blockly.WarningHandler.checkErrors,
-  typeblock: [{ translatedName: Blockly.LANG_LISTS_REVERSE_TITLE_REVERSE }]
-}; 
-
+        .setText(Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT);
+   }
+};
 
 
 Blockly.Language.lists_create_with = {
