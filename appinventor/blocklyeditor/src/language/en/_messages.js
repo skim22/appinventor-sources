@@ -734,18 +734,15 @@ Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_TOOLTIP = 'Returns the value associated with 
 Blockly.LANG_LISTS_MAP_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#map';
 Blockly.LANG_LISTS_MAP_TITLE_MAP = 'make new mapped ';
 Blockly.LANG_LISTS_MAP_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_MAP_INPUT_ITEM = 'change each ';
+Blockly.LANG_LISTS_MAP_INPUT_ITEM = 'from mapping each ';
 Blockly.LANG_LISTS_MAP_INPUT_VAR = 'item';
-Blockly.LANG_LISTS_MAP_INPUT_TO = 'using';
-Blockly.LANG_LISTS_MAP_INPUT_NEW_ITEM = 'function';
+Blockly.LANG_LISTS_MAP_INPUT_TO = 'to';
+Blockly.LANG_LISTS_MAP_INPUT_NEW_ITEM = 'new item';
 Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_TEXT = 'map list';
 //Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_PREFIX = 'map ';
 //Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_SUFFIX = ' list';
 Blockly.LANG_LISTS_MAP_TOOLTIP = 'Changes each item in the list using the block in the \'new item\' section'
   + ' Use the given variable name to refer to the current list item.';
-//Changes each item in the list using the function block the \'new item\' section.
-//Use the given variable name to refer to the current list item.
-//Returns new mapped list.
 
 Blockly.LANG_LISTS_FILTER_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#filter';
 Blockly.LANG_LISTS_FILTER_TITLE_FILTER = 'make new filtered ';
@@ -787,9 +784,9 @@ Blockly.LANG_LISTS_SORT_TOOLTIP = 'Sorts list in ascending order.';
 Blockly.LANG_LISTS_SORT_COMPARATOR_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortcomparator';
 Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT = 'make new sorted ';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'compare ';
+Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'using comparator ';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR1 = 'item1';
-Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_AND = 'and';
+Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_AND = ' ';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR2 = 'item2';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_TEXT = 'sort list';
 //Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_PREFIX = 'sort ';
@@ -798,9 +795,9 @@ Blockly.LANG_LISTS_SORT_COMPARATOR_TOOLTIP = 'Sorts list using a comparison func
    + ' adjacent list items and returns true or false';
    
 Blockly.LANG_LISTS_SORT_KEY_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortkey';
-Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT = 'make new sorted ';
+Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT = 'sort ';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using this property of ';
+Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using key ';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_VAR = 'item';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_TEXT = 'sort list';
 //Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_PREFIX = 'sort ';
