@@ -732,81 +732,63 @@ Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_INPUT_NOT_FOUND = 'notFound';
 Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_TOOLTIP = 'Returns the value associated with the key in the list of pairs';
 
 Blockly.LANG_LISTS_MAP_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#map';
-Blockly.LANG_LISTS_MAP_TITLE_MAP = 'make new mapped ';
-Blockly.LANG_LISTS_MAP_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_MAP_INPUT_ITEM = 'change each ';
+Blockly.LANG_LISTS_MAP_TITLE_MAP = 'make new list from';
+Blockly.LANG_LISTS_MAP_INPUT_ITEM = 'mapping each';
 Blockly.LANG_LISTS_MAP_INPUT_VAR = 'item';
-Blockly.LANG_LISTS_MAP_INPUT_TO = 'using';
-Blockly.LANG_LISTS_MAP_INPUT_NEW_ITEM = 'function';
+Blockly.LANG_LISTS_MAP_INPUT_TO = 'to';
 Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_TEXT = 'map list';
-//Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_PREFIX = 'map ';
-//Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_SUFFIX = ' list';
-Blockly.LANG_LISTS_MAP_TOOLTIP = 'Changes each item in the list using the block in the \'new item\' section'
+Blockly.LANG_LISTS_MAP_TOOLTIP = 'Maps each item in the list to a new item.'
   + ' Use the given variable name to refer to the current list item.';
-//Changes each item in the list using the function block the \'new item\' section.
-//Use the given variable name to refer to the current list item.
-//Returns new mapped list.
 
 Blockly.LANG_LISTS_FILTER_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#filter';
-Blockly.LANG_LISTS_FILTER_TITLE_FILTER = 'make new filtered ';
-Blockly.LANG_LISTS_FILTER_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_FILTER_INPUT_ITEM = 'keep each ';
+Blockly.LANG_LISTS_FILTER_TITLE_FILTER = 'make new filtered list from ';
+Blockly.LANG_LISTS_FILTER_INPUT_ITEM = 'keeping each ';
 Blockly.LANG_LISTS_FILTER_INPUT_VAR = 'item';
 Blockly.LANG_LISTS_FILTER_INPUT_PASSING = 'passing ';
 Blockly.LANG_LISTS_FILTER_INPUT_TEST = 'test';
 Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_TEXT = 'filter list';
-//Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_PREFIX = 'filter ';
-//Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_SUFFIX = ' list';
-Blockly.LANG_LISTS_FILTER_TOOLTIP = 'Keeps each item in the list satisfying the block in the \'test\' section'
+Blockly.LANG_LISTS_FILTER_TOOLTIP = 'Keeps each item in the list satisfying the block in the \'test\' section.'
   + ' Use the given variable name to refer to the current list item.';
 
 Blockly.LANG_LISTS_REDUCE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#reduce';
 Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE = 'reduce';
 Blockly.LANG_LISTS_REDUCE_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_REDUCE_INPUT_INITIAL_ANSWER = 'initialAnswer';
-Blockly.LANG_LISTS_REDUCE_INPUT_COMBINE = 'combine';
+Blockly.LANG_LISTS_REDUCE_INPUT_INITIAL_ANSWER = 'starting with initialAnswer';
+Blockly.LANG_LISTS_REDUCE_INPUT_COMBINE = 'by combining';
 Blockly.LANG_LISTS_REDUCE_INPUT_VAR = 'item ';
 Blockly.LANG_LISTS_REDUCE_INPUT_AND = 'and';
 Blockly.LANG_LISTS_REDUCE_INPUT_ANSWER = 'answerSoFar';
 Blockly.LANG_LISTS_REDUCE_INPUT_COLLAPSED_TEXT = 'reduce list';
-//Blockly.LANG_LISTS_REDUCE_INPUT_COLLAPSED_PREFIX = 'reduce ';
-//Blockly.LANG_LISTS_REDUCE_INPUT_COLLAPSED_SUFFIX = ' list';
-Blockly.LANG_LISTS_REDUCE_TOOLTIP = 'Reduces the list by combining the list elements' 
-  +	' using the block in the \'expression\'  section. ';
+Blockly.LANG_LISTS_REDUCE_TOOLTIP = 'Reduces the list to a single value by combining the list elements' 
+  +	'using the block in the body section. If the list is empty, initialAnswer is returned. Otherwise, '
+  + 'the function is first applied to initialAnswer and the first list item, and then on the accumulating answer'
+  + 'and the next list item. This continues until the end of the list.';
   
 Blockly.LANG_LISTS_REVERSE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#reverse';
-Blockly.LANG_LISTS_REVERSE_TITLE_REVERSE = 'make new reversed ';
-Blockly.LANG_LISTS_REVERSE_INPUT_LIST = 'list';
+Blockly.LANG_LISTS_REVERSE_TITLE_REVERSE = 'make new reversed list from';
 Blockly.LANG_LISTS_REVERSE_TOOLTIP = 'Reverses list.';
 
 Blockly.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sort';
-Blockly.LANG_LISTS_SORT_TITLE_SORT = 'make new sorted ';
-Blockly.LANG_LISTS_SORT_INPUT_LIST = 'list';
+Blockly.LANG_LISTS_SORT_TITLE_SORT = 'make new sorted list from';
 Blockly.LANG_LISTS_SORT_TOOLTIP = 'Sorts list in ascending order.';
 
 Blockly.LANG_LISTS_SORT_COMPARATOR_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortcomparator';
-Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT = 'make new sorted ';
-Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'compare ';
+Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT = 'make new sorted list from';
+Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'by comparing every';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR1 = 'item1';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_AND = 'and';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR2 = 'item2';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_TEXT = 'sort list';
-//Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_PREFIX = 'sort ';
-//Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COLLAPSED_SUFFIX = ' list';
 Blockly.LANG_LISTS_SORT_COMPARATOR_TOOLTIP = 'Sorts list using a comparison function that takes in two  '
-   + ' adjacent list items and returns true or false';
+   + 'list items. The comparison function returns true or false and determines the ordering of list items.';
    
 Blockly.LANG_LISTS_SORT_KEY_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortkey';
-Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT = 'make new sorted ';
-Blockly.LANG_LISTS_SORT_KEY_INPUT_INLIST = 'list';
-Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using this property of ';
+Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT = 'make new sorted list from';
+Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using key called on each ';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_VAR = 'item';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_TEXT = 'sort list';
-//Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_PREFIX = 'sort ';
-//Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_SUFFIX = ' list';
-Blockly.LANG_LISTS_SORT_KEY_TOOLTIP = 'Sorts list using a key function that changes each list item' 
-	+ ' prior to sorting. The changed list items are used for comparison';
+Blockly.LANG_LISTS_SORT_KEY_TOOLTIP = 'Sorts list using a key function that is applied to each list item' 
+	+ ' prior to sorting. The value returned by the key function is used for sorting.';
 
 /*Blockly.LANG_LISTS_INDEX_OF_HELPURL = 'http://publib.boulder.ibm.com/infocenter/lnxpcomp/v8v101/index.jsp?topic=%2Fcom.ibm.xlcpp8l.doc%2Flanguage%2Fref%2Farsubex.htm';
 Blockly.LANG_LISTS_INDEX_OF_TITLE_FIND = 'find';

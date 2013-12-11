@@ -36,7 +36,6 @@ Blockly.Language.lists_map = {
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_MAP_TITLE_MAP)
-        .appendTitle(Blockly.LANG_LISTS_MAP_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_MAP_INPUT_ITEM)
@@ -44,10 +43,9 @@ Blockly.Language.lists_map = {
                                                        true, // name is editable
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
                      'VAR')
-         .appendTitle(Blockly.LANG_LISTS_MAP_INPUT_TO)            
+         .appendTitle(Blockly.LANG_LISTS_MAP_INPUT_TO)
     	.setAlign(Blockly.ALIGN_RIGHT);
-    this.appendIndentedValueInput('DO')
-        .appendTitle(Blockly.LANG_LISTS_MAP_INPUT_NEW_ITEM);
+    this.appendIndentedValueInput('TO');
     this.setOutput(true, null);
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_MAP_TOOLTIP);
     this.appendCollapsedInput()
@@ -61,9 +59,9 @@ Blockly.Language.lists_map = {
     return [this.getTitleValue('VAR')];
   },
   blocksInScope: function() {
-    var doBlock = this.getInputTargetBlock('DO');
-    if (doBlock) {
-      return [doBlock];
+    var toBlock = this.getInputTargetBlock('TO');
+    if (toBlock) {
+      return [toBlock];
     } else {
       return [];
     }
@@ -92,7 +90,6 @@ Blockly.Language.lists_filter = {
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_FILTER_TITLE_FILTER)
-        .appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_ITEM)
@@ -102,7 +99,7 @@ Blockly.Language.lists_filter = {
                      'VAR')
          .appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_PASSING)
     	.setAlign(Blockly.ALIGN_RIGHT);
-    this.appendIndentedValueInput('DO')
+    this.appendIndentedValueInput('TEST')
         .appendTitle(Blockly.LANG_LISTS_FILTER_INPUT_TEST);
     this.setOutput(true, null);
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_FILTER_TOOLTIP);
@@ -117,9 +114,9 @@ Blockly.Language.lists_filter = {
     return [this.getTitleValue('VAR')];
   },
   blocksInScope: function() {
-    var doBlock = this.getInputTargetBlock('DO');
-    if (doBlock) {
-      return [doBlock];
+    var testBlock = this.getInputTargetBlock('TEST');
+    if (testBlock) {
+      return [testBlock];
     } else {
       return [];
     }
@@ -150,10 +147,10 @@ Blockly.Language.lists_reduce = {
         .appendTitle(Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE)
         .appendTitle(Blockly.LANG_LISTS_REDUCE_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendValueInput('NULL')
+    this.appendValueInput('INITANSWER')
     	.appendTitle(Blockly.LANG_LISTS_REDUCE_INPUT_INITIAL_ANSWER)
         .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendDummyInput('COMBINE')
+    this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_REDUCE_INPUT_COMBINE)
     	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_REDUCE_INPUT_VAR,
                                                        true, // name is editable
@@ -165,7 +162,7 @@ Blockly.Language.lists_reduce = {
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
                      'VAR2') 
     	.setAlign(Blockly.ALIGN_RIGHT);
-    this.appendIndentedValueInput('DO');
+    this.appendIndentedValueInput('COMBINE');
     this.setOutput(true, null);
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REDUCE_TOOLTIP);
     this.appendCollapsedInput()
@@ -182,9 +179,9 @@ Blockly.Language.lists_reduce = {
     return names;
   },
   blocksInScope: function() {
-    var doBlock = this.getInputTargetBlock('DO');
-    if (doBlock) {
-      return [doBlock];
+    var combineBlock = this.getInputTargetBlock('COMBINE');
+    if (combineBlock) {
+      return [combineBlock];
     } else {
       return [];
     }
@@ -214,7 +211,7 @@ Blockly.Language.lists_reverse = {
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
     this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
-    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new reversed ').appendTitle('list');
+    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new reversed list from');
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_REVERSE_TOOLTIP);
     this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
   },
@@ -229,7 +226,7 @@ Blockly.Language.lists_sort = {
   init : function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
     this.setOutput(true, Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.OUTPUT));
-    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new sorted ').appendTitle('list');
+    this.appendValueInput('LIST').setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT)).appendTitle('make new sorted list from');
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_TOOLTIP);
     this.appendCollapsedInput().appendTitle('sort', 'COLLAPSED_TEXT');
    },
@@ -246,7 +243,6 @@ Blockly.Language.lists_sort_comparator = {
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT)
-        .appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR)
@@ -260,7 +256,7 @@ Blockly.Language.lists_sort_comparator = {
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
                      'VAR2')  
     	.setAlign(Blockly.ALIGN_RIGHT);
-    this.appendIndentedValueInput('DO');
+    this.appendIndentedValueInput('COMPARE');
     this.setOutput(true, null);
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_COMPARATOR_TOOLTIP);
     this.appendCollapsedInput()
@@ -277,9 +273,9 @@ Blockly.Language.lists_sort_comparator = {
 	    return names;
   },
   blocksInScope: function() {
-    var doBlock = this.getInputTargetBlock('DO');
-    if (doBlock) {
-      return [doBlock];
+    var compareBlock = this.getInputTargetBlock('COMPARE');
+    if (compareBlock) {
+      return [compareBlock];
     } else {
       return [];
     }
@@ -311,7 +307,6 @@ Blockly.Language.lists_sort_key = {
     this.appendValueInput('LIST')
         .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
         .appendTitle(Blockly.LANG_LISTS_SORT_KEY_TITLE_SORT)
-        .appendTitle(Blockly.LANG_LISTS_SORT_KEY_INPUT_INLIST)
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput('DESCRIPTION')
     	.appendTitle(Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY)    	
@@ -320,7 +315,7 @@ Blockly.Language.lists_sort_key = {
     													Blockly.FieldFlydown.DISPLAY_BELOW),
     													'VAR')
     	.setAlign(Blockly.ALIGN_RIGHT);
-    this.appendIndentedValueInput('DO');
+    this.appendIndentedValueInput('KEY');
     this.setOutput(true, null);
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_SORT_KEY_TOOLTIP);
     this.appendCollapsedInput()
@@ -334,9 +329,9 @@ Blockly.Language.lists_sort_key = {
     return [this.getTitleValue('VAR')];
   },
   blocksInScope: function() {
-    var doBlock = this.getInputTargetBlock('DO');
-    if (doBlock) {
-      return [doBlock];
+    var keyBlock = this.getInputTargetBlock('KEY');
+    if (keyBlock) {
+      return [keyBlock];
     } else {
       return [];
     }
