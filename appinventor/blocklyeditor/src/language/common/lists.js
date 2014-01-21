@@ -464,6 +464,58 @@ Blockly.Language.lists_map = {
   }
 };
 
+Blockly.Language.lists_map_destructive = {
+		  // For each loop.
+  category : Blockly.LANG_CATEGORY_LISTS,
+  helpUrl : Blockly.LANG_LISTS_MAP_DEST_HELPURL,
+  init : function() {
+    this.setColour(Blockly.LIST_CATEGORY_HUE);
+    this.appendValueInput('LIST')
+        .setCheck(Blockly.Language.YailTypeToBlocklyType("list",Blockly.Language.INPUT))
+        .appendTitle(Blockly.LANG_LISTS_MAP_DEST_TITLE_MAP)
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput('DESCRIPTION')
+    	.appendTitle(Blockly.LANG_LISTS_MAP_DEST_INPUT_ITEM)
+    	.appendTitle(new Blockly.FieldParameterFlydown(Blockly.LANG_LISTS_MAP_DEST_INPUT_VAR,
+                                                       true, // name is editable
+                                                       Blockly.FieldFlydown.DISPLAY_BELOW),
+                     'VAR')
+         .appendTitle(Blockly.LANG_LISTS_MAP_DEST_INPUT_TO)
+    	.setAlign(Blockly.ALIGN_RIGHT);
+    this.appendIndentedValueInput('TO');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_MAP_DEST_TOOLTIP);
+    this.appendCollapsedInput()
+        .appendTitle(Blockly.LANG_LISTS_MAP_DEST_TITLE_MAP, 'COLLAPSED_TEXT');
+  },
+  onchange: Blockly.WarningHandler.checkErrors,
+  getVars: function() {
+    return [this.getTitleValue('VAR')];
+  },
+  blocksInScope: function() {
+    var toBlock = this.getInputTargetBlock('TO');
+    if (toBlock) {
+      return [toBlock];
+    } else {
+      return [];
+    }
+  },
+  declaredNames: function() {
+    return [this.getTitleValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+      this.setTitleValue(newName, 'VAR');
+    }
+  },
+  typeblock: [{ translatedName: Blockly.LANG_LISTS_MAP_DEST_TITLE_MAP }],
+  prepareCollapsedText: function(){
+    this.getTitle_('COLLAPSED_TEXT')
+        .setText(Blockly.LANG_LISTS_MAP_DEST_TITLE_MAP);
+  }
+};
+
 Blockly.Language.lists_filter = {
   // For each loop.
   category : Blockly.LANG_CATEGORY_LISTS,

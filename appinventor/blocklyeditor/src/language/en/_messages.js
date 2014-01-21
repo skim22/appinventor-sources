@@ -740,6 +740,15 @@ Blockly.LANG_LISTS_MAP_INPUT_COLLAPSED_TEXT = 'map list';
 Blockly.LANG_LISTS_MAP_TOOLTIP = 'Maps each item in the list to a new item.'
   + ' Use the given variable name to refer to the current list item.';
 
+Blockly.LANG_LISTS_MAP_DEST_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#mapdest';
+Blockly.LANG_LISTS_MAP_DEST_TITLE_MAP = 'map list';
+Blockly.LANG_LISTS_MAP_DEST_INPUT_ITEM = 'changing each';
+Blockly.LANG_LISTS_MAP_DEST_INPUT_VAR = 'item';
+Blockly.LANG_LISTS_MAP_DEST_INPUT_TO = 'to';
+Blockly.LANG_LISTS_MAP_DEST_INPUT_COLLAPSED_TEXT = 'map list';
+Blockly.LANG_LISTS_MAP_DEST_TOOLTIP = 'Maps each item in the list to a new item.'
+  + ' Use the given variable name to refer to the current list item.';
+
 Blockly.LANG_LISTS_FILTER_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#filter';
 Blockly.LANG_LISTS_FILTER_TITLE_FILTER = 'make new filtered list from ';
 Blockly.LANG_LISTS_FILTER_INPUT_ITEM = 'keeping each ';
