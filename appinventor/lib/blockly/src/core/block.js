@@ -1998,6 +1998,38 @@ Blockly.Block.prototype.setCommentText = function(text) {
   }
 };
 
+//JOHANNA //FINISH WRITING THIS. 
+/**
+ * Set this block's watch text.
+ * @param {?string} text The text, or null to delete.
+ */
+Blockly.Block.prototype.setWatch = function(text) {
+  if (!Blockly.watch) {
+    throw 'Something.';
+  }
+  var changedState = false;
+  if (goog.isString(text)) {
+    if (!this.comment) {
+      this.comment = new Blockly.Comment(this);
+      changedState = true;
+    }
+    this.comment.setText(/** @type {string} */ (text));
+  } else {
+    if (this.comment) {
+      this.comment.dispose();
+      changedState = true;
+    }
+  }
+  if (this.rendered) {
+    this.render();
+    if (changedState) {
+      // Adding or removing a comment icon will cause the block to change shape.
+      this.bumpNeighbours_();
+    }
+  }
+};
+
+
 /**
  * Set this block's warning text.
  * @param {?string} text The text, or null to delete.

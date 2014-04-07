@@ -168,6 +168,7 @@ Blockly.BlocklyEditor.render = function() {
 Blockly.Block.prototype.customContextMenu = function(options) {
   var myBlock = this;
   var doitOption = { enabled: this.disabled?false : true};
+  var watchOption = {enabled: this.disabled?false : true}; //JOHANNA
   if (window.parent.BlocklyPanel_checkIsAdmin()) {
     var yailOption = {enabled: this.disabled?false : true};
     yailOption.text = Blockly.Msg.GENERATE_YAIL;
@@ -210,6 +211,24 @@ Blockly.Block.prototype.customContextMenu = function(options) {
     }
   };
   options.push(doitOption);
+  watchOption.text = "Watch"; //JOHANNA
+  watchOption.callback = function() {
+    var yailText;
+    var yailTextOrArray = Blockly.Yail.blockToCode(myBlock);
+    if(yailTextOrArray instanceof Array){
+      yailText = yailTextOrArray[0];
+    } else {
+      yailText = yailTextOrArray;
+    }
+    console.log("WATCH");
+    console.log(yailText);
+    //var watchYail = "(watch " + yailText + ")";
+    myBlock.watch = true;
+    //myBlock.replError = "(watch)";
+    myBlock.setCommentText("");
+    Blockly.ReplMgr.putYail(yailText);
+  };
+  options.push(watchOption);
   if(myBlock.procCustomContextMenu){
     myBlock.procCustomContextMenu(options);
   }
