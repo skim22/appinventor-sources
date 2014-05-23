@@ -413,16 +413,48 @@ Blockly.Language.lists_lookup_in_pairs = {
   typeblock: [{ translatedName: Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_TITLE_LOOKUP_IN_PAIRS }]
 };
 
+	Blockly.Language.lists_test = {
+			category : Blockly.LANG_CATEGORY_LISTS,
+			  helpUrl : Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_HELPURL,
+		    init: function() {
+		    this.setColour(Blockly.LIST_CATEGORY_HUE);
+		    var test = new Blockly.RadioButtonGroup();
+		    		    
+		    var one = new Blockly.FieldRadioButton(test);
+		    var two = new Blockly.FieldRadioButton(test);
+		    var three = new Blockly.FieldRadioButton(test);
+		    var four = new Blockly.FieldRadioButton(test);
+		    this.appendDummyInput()
+		        .appendTitle(one)
+		        .appendTitle("1");
+		    this.appendDummyInput()
+	        	.appendTitle(two)
+	        	.appendTitle("2");
+		    this.appendDummyInput()
+	        	.appendTitle(three)
+	        	.appendTitle("3");
+		    this.appendDummyInput()
+	        	.appendTitle(four)
+	        	.appendTitle("4");
+		   
+		    this.setTooltip('');
+		    this.setTooltip(Blockly.LANG_CONTROLS_IF_ELSEIF_TOOLTIP);
+		   
+		  }
+		};
+
 
 Blockly.Language.lists_mutatorcontainer = {
     init: function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
     this.appendDummyInput()
-    	.appendTitle(new Blockly.FieldCheckbox('FALSE'), 'CHANGE_LIST')
+    	.appendTitle(new Blockly.FieldRadioButton('FALSE'), 'CHANGE_LIST')
     	.appendTitle("changes existing list");
     this.appendDummyInput()
-    	 .appendTitle(new Blockly.FieldCheckbox('TRUE'), 'MAKE_NEW_LIST')
+    	 .appendTitle(new Blockly.FieldRadioButton('TRUE'), 'MAKE_NEW_LIST')
     	 .appendTitle("makes new list");
+    var oldState = new Array();
+    new Blockly.FieldRadioButton('YES');
     this.setTooltip('');
     this.setTooltip(Blockly.LANG_CONTROLS_IF_ELSEIF_TOOLTIP);
     this.contextMenu = false;
@@ -449,7 +481,7 @@ Blockly.Language.lists_map = {
     	.setAlign(Blockly.ALIGN_RIGHT);
     this.appendIndentedValueInput('TO');
     this.setOutput(true, null);
-    this.setMutator(new Blockly.Mutator([]));
+    //this.setMutator(new Blockly.Mutator([]));
     Blockly.Language.setTooltip(this, Blockly.LANG_LISTS_MAP_TOOLTIP);
     this.appendCollapsedInput()
         .appendTitle(Blockly.LANG_LISTS_MAP_TITLE_MAP, 'COLLAPSED_TEXT');
@@ -546,7 +578,12 @@ Blockly.Language.lists_map = {
 	  this.oldChangeList = this.changeList;
 	  this.oldMakeNewList = this.makeNewList;
 	  
-	  this.changeList = containerBlock.getTitleValue('CHANGE_LIST') == 'TRUE' ? true : false;
+	  
+	  console.log("Before toggle: " + this.changeList);
+	  this.changeList = containerBlock.getTitleValue('CHANGE_LIST');
+	  console.log("After toggle: " + this.changeList);
+	  //this.changeList = containerBlock.getTitleValue('CHANGE_LIST') == 'TRUE' ? true : false;
+	  
 	  this.makeNewList = containerBlock.getTitleValue('MAKE_NEW_LIST') == 'TRUE' ? true : false;
 	  
 	  if (this.makeNewList && this.changeList) {
