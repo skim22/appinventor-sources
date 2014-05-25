@@ -83,6 +83,8 @@
     "./src/nameSet.js",
     "./src/substitution.js",
     "./src/language_switch.js",
+    "./src/field_radio_button.js",
+
 
     //blocks files
     './src/blocks/control.js',
