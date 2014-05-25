@@ -418,9 +418,10 @@ Blockly.Language.lists_lookup_in_pairs = {
 			  helpUrl : Blockly.LANG_LISTS_LOOKUP_IN_PAIRS_HELPURL,
 		    init: function() {
 		    this.setColour(Blockly.LIST_CATEGORY_HUE);
-		    var test = new Blockly.RadioButtonGroup();
+		    //var test = new Blockly.RadioButtonGroup();
+		    //var test = [];
 		    		    
-		    var one = new Blockly.FieldRadioButton(test);
+		    /*var one = new Blockly.FieldRadioButton(test);
 		    var two = new Blockly.FieldRadioButton(test);
 		    var three = new Blockly.FieldRadioButton(test);
 		    var four = new Blockly.FieldRadioButton(test);
@@ -435,7 +436,7 @@ Blockly.Language.lists_lookup_in_pairs = {
 	        	.appendTitle("3");
 		    this.appendDummyInput()
 	        	.appendTitle(four)
-	        	.appendTitle("4");
+	        	.appendTitle("4");*/
 		   
 		    this.setTooltip('');
 		    this.setTooltip(Blockly.LANG_CONTROLS_IF_ELSEIF_TOOLTIP);
