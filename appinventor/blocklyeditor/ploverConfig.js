@@ -69,6 +69,7 @@
     "./src/field_global_flydown.js",
     "./src/field_procedure_flydown.js",
     "./src/field_radio_button.js",
+    "./src/radio_button_group.js",
 
     //language files
     './src/language/common/control.js',
