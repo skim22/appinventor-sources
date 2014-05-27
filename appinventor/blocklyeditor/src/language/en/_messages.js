@@ -792,6 +792,10 @@ Blockly.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/suppor
 Blockly.LANG_LISTS_SORT_TITLE_SORT = 'make new sorted list from';
 Blockly.LANG_LISTS_SORT_TOOLTIP = 'Sorts list in ascending order.';
 
+Blockly.LANG_LISTS_SORT_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sort';
+Blockly.LANG_LISTS_SORT_DEST_TITLE_SORT = 'sort existing list ';
+Blockly.LANG_LISTS_SORT_TOOLTIP = 'Sorts list in ascending order.';
+
 Blockly.LANG_LISTS_SORT_COMPARATOR_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortcomparator';
 Blockly.LANG_LISTS_SORT_COMPARATOR_TITLE_SORT = 'make new sorted list from';
 Blockly.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR = 'by comparing every';
@@ -808,6 +812,14 @@ Blockly.LANG_LISTS_SORT_KEY_INPUT_KEY = 'using key called on each ';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_VAR = 'item';
 Blockly.LANG_LISTS_SORT_KEY_INPUT_COLLAPSED_TEXT = 'sort list';
 Blockly.LANG_LISTS_SORT_KEY_TOOLTIP = 'Sorts list using a key function that is applied to each list item' 
+	+ ' prior to sorting. The value returned by the key function is used for sorting.';
+
+Blockly.LANG_LISTS_SORT_KEY_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#sortkey';
+Blockly.LANG_LISTS_SORT_KEY_DEST_TITLE_SORT = 'sort existing list';
+Blockly.LANG_LISTS_SORT_KEY_DEST_INPUT_KEY = 'using key called on each ';
+Blockly.LANG_LISTS_SORT_KEY_DEST_INPUT_VAR = 'item';
+Blockly.LANG_LISTS_SORT_KEY_DEST_INPUT_COLLAPSED_TEXT = 'sort list';
+Blockly.LANG_LISTS_SORT_KEY_DEST_TOOLTIP = 'Sorts list using a key function that is applied to each list item' 
 	+ ' prior to sorting. The value returned by the key function is used for sorting.';
 
 /*Blockly.LANG_LISTS_INDEX_OF_HELPURL = 'http://publib.boulder.ibm.com/infocenter/lnxpcomp/v8v101/index.jsp?topic=%2Fcom.ibm.xlcpp8l.doc%2Flanguage%2Fref%2Farsubex.htm';
