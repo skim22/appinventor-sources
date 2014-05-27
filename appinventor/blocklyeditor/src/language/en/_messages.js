@@ -759,6 +759,17 @@ Blockly.LANG_LISTS_FILTER_INPUT_COLLAPSED_TEXT = 'filter list';
 Blockly.LANG_LISTS_FILTER_TOOLTIP = 'Keeps each item in the list satisfying the block in the \'test\' section.'
   + ' Use the given variable name to refer to the current list item.';
 
+
+Blockly.LANG_LISTS_FILTER_DEST_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#filter';
+Blockly.LANG_LISTS_FILTER_DEST_TITLE_FILTER = 'filter list ';
+Blockly.LANG_LISTS_FILTER_DEST_INPUT_ITEM = 'keeping each ';
+Blockly.LANG_LISTS_FILTER_DEST_INPUT_VAR = 'item';
+Blockly.LANG_LISTS_FILTER_DEST_INPUT_PASSING = 'passing ';
+Blockly.LANG_LISTS_FILTER_DEST_INPUT_TEST = 'test';
+Blockly.LANG_LISTS_FILTER_DEST_INPUT_COLLAPSED_TEXT = 'filter list';
+Blockly.LANG_LISTS_FILTER_DEST_TOOLTIP = 'Keeps each item in the list satisfying the block in the \'test\' section.'
+  + ' Use the given variable name to refer to the current list item.';
+
 Blockly.LANG_LISTS_REDUCE_HELPURL = 'http://appinventor.mit.edu/explore/ai2/support/blocks/lists#reduce';
 Blockly.LANG_LISTS_REDUCE_TITLE_REDUCE = 'reduce';
 Blockly.LANG_LISTS_REDUCE_INPUT_INLIST = 'list';
