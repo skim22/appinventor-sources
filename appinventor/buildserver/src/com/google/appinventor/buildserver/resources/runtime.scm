@@ -780,7 +780,7 @@
 (define-syntax map_nondest
   (syntax-rules ()
     ((_ lambda-arg-name body-form list)
-     (yail-map (lambda (lambda-arg-name) body-form) list))))
+     (yail-map-nondest (lambda (lambda-arg-name) body-form) list))))
 
 (define-syntax map_dest
   (syntax-rules ()
@@ -790,7 +790,7 @@
 (define-syntax filter_nondest
   (syntax-rules ()
     ((_ lambda-arg-name body-form list)
-     (yail-filter (lambda (lambda-arg-name) body-form) list))))
+     (yail-filter-nondest (lambda (lambda-arg-name) body-form) list))))
      
 (define-syntax filter_dest
   (syntax-rules ()
@@ -805,7 +805,7 @@
 (define-syntax sortcomparator_nondest
   (syntax-rules ()
     ((_ lambda-arg1-name lambda-arg2-name body-form list)
-     (yail-list-sort-comparator (lambda (lambda-arg1-name lambda-arg2-name) body-form) list))))
+     (yail-list-sort-comparator-nondest (lambda (lambda-arg1-name lambda-arg2-name) body-form) list))))
      
 (define-syntax sortcomparator_dest
   (syntax-rules ()
@@ -815,7 +815,7 @@
 (define-syntax sortkey_nondest
   (syntax-rules ()
     ((_ lambda-arg-name body-form list)
-     (yail-list-sort-key (lambda (lambda-arg-name) body-form) list))))
+     (yail-list-sort-key-nondest (lambda (lambda-arg-name) body-form) list))))
      
 (define-syntax sortkey_dest
   (syntax-rules ()
@@ -1915,7 +1915,7 @@ list, use the make-yail-list constructor with no arguments.
          (for-each proc (yail-list-contents verified-list))
           *the-null-value*))))
           
-(define (yail-map proc yail-list)
+(define (yail-map-nondest proc yail-list)
   (let ((verified-list (coerce-to-yail-list yail-list)))
     (if (eq? verified-list *non-coercible-value*)
         (signal-runtime-error
@@ -1937,7 +1937,7 @@ list, use the make-yail-list constructor with no arguments.
           (set-cdr! verified-list  (map proc (yail-list-contents verified-list)))
            *the-null-value*))))
 
-(define (yail-filter proc yail-list)
+(define (yail-filter-nondest proc yail-list)
   (let ((verified-list (coerce-to-yail-list yail-list)))
     (if (eq? verified-list *non-coercible-value*)
         (signal-runtime-error
@@ -1972,10 +1972,23 @@ list, use the make-yail-list constructor with no arguments.
          "Bad list argument to reduce")
         (kawa-list->yail-list (reduce ans binop (yail-list-contents verified-list)))))) 
         
-(define (yail-list-reverse yl)
- 	(cond ((yail-list-empty? yl) (make YailList))
+(define (reverse-list lst)
+    (cond ((null? lst) lst)
+          ((null? (cdr lst)) lst)
+          (else (append (reverse-list (cdr lst)) (list (car lst))))))
+
+(define (yail-list-reverse-nondest yl)
+  (cond ((yail-list-empty? yl) (make YailList))
           ((not (pair? yl)) yl)
-          (else (reverse (yail-list-contents yl)))))
+          (else (reverse-list (yail-list-contents yl)))))
+
+(define (yail-list-reverse-dest y1)
+  (cond ((yail-list-empty? y1) (make YailList))
+          ((not (pair? y1)) y1)
+          (else 
+            (begin
+              (set-cdr! y1 (reverse-list (yail-list-contents y1))) 
+              *the-null-value*))))
 
 ;;Implements a generic sorting procedure that works on any list of types.
          
@@ -2134,9 +2147,8 @@ list, use the make-yail-list constructor with no arguments.
             (begin
               (set-cdr! y1 (mergesort is-leq? (yail-list-contents y1))) 
               *the-null-value*))))
-           
-			   	        
-(define (yail-list-sort-comparator lessthan? y1)                                           
+           			   	        
+(define (yail-list-sort-comparator-nondest lessthan? y1)                                           
 	(cond ((yail-list-empty? y1) (make YailList))
           ((not (pair? y1)) y1)
           (else (mergesort lessthan? (yail-list-contents y1))))) 
@@ -2161,7 +2173,7 @@ list, use the make-yail-list constructor with no arguments.
 			  (else (merge-key lessthan? key (mergesort-key lessthan? key (take lst (quotient (length lst) 2)))
 			  				             (mergesort-key lessthan? key (drop lst (quotient (length lst) 2)))))))  
        
-(define (yail-list-sort-key key y1) 
+(define (yail-list-sort-key-nondest key y1) 
 	(cond ((yail-list-empty? y1) (make YailList))
           ((not (pair? y1)) y1)
           (else (mergesort-key is-leq? key (yail-list-contents y1)))))
