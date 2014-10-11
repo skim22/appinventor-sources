@@ -432,9 +432,6 @@ Blockly.Blocks['lists_lookup_in_pairs'] = {
   typeblock: [{ translatedName: Blockly.Msg.LANG_LISTS_LOOKUP_IN_PAIRS_TITLE_LOOKUP_IN_PAIRS }]
 };
 
-
-$$$$$$$$$$$$$
-
 Blockly.Blocks['lists_mutatorcontainer'] = {
   init: function() {
     this.setColour(Blockly.LIST_CATEGORY_HUE);
@@ -735,7 +732,7 @@ Blockly.Blocks['lists_reduce'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendIndentedValueInput('COMBINE');
     this.setOutput(true, null);
-    this.(Blockly.Msg.LANG_LISTS_REDUCE_TOOLTIP);
+    this.setTooltip(Blockly.Msg.LANG_LISTS_REDUCE_TOOLTIP);
   },
   // onchange: Blockly.WarningHandler.checkErrors,
   getVars: function() {
@@ -778,7 +775,7 @@ Blockly.Blocks['lists_reverse'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setMutator(new Blockly.Mutator([]));
-    this.(Blockly.Msg.LANG_LISTS_REVERSE_TOOLTIP);
+    this.setTooltip(Blockly.Msg.LANG_LISTS_REVERSE_TOOLTIP);
     this.changeList = true;
   },
   // onchange: Blockly.WarningHandler.checkErrors,
