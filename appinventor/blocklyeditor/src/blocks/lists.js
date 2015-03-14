@@ -1865,7 +1865,8 @@ Blockly.Blocks['lists_sort_comparator'] = {
         .appendField(new Blockly.FieldParameterFlydown(Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_VAR2,
                                                        true, // name is editable
                                                        Blockly.FieldFlydown.DISPLAY_BELOW),
-                     'VAR2')  
+                     'VAR2')
+         .appendField(Blockly.Msg.LANG_LISTS_SORT_COMPARATOR_INPUT_COMPARATOR_2)
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendIndentedValueInput('COMPARE');
     this.setMutator(new Blockly.Mutator([]));
